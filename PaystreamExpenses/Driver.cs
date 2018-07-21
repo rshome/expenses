@@ -84,13 +84,10 @@ namespace PaystreamExpenses
             public void WeekTrainPass()
             {
             Thread.Sleep(2000);            
-            driver.FindElement(By.XPath("//*[@id='add-receipted-item']")).Click();        
+            driver.FindElement(By.XPath("//*[@id='add-receipted-item']")).Click();
 
-            //meals
-            driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
-            //wait = new WebDriverWait(driver, new TimeSpan(0, 0, 5));
-            //wait.Until(drv => drv.FindElement(By.Id("ExpenseParentCategoryId")));
-            IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
+            //train
+            //IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
 
             IWebElement internet = driver.FindElement(By.Id("ExpenseParentCategoryId"));
             internet.SendKeys(Keys.ArrowDown);
@@ -252,30 +249,10 @@ namespace PaystreamExpenses
 
                 Thread.Sleep(1000);
             }        
-
-            public void DeclareExpensesDriveHemel()
-            {
-                Thread.Sleep(3000);
-                driver.FindElement(By.XPath(".//*[@id='add-favourite-item']")).Click();                            
-
-                IWebElement drive = driver.FindElement(By.Id("SelectedFavouriteId"));
-                drive.SendKeys(Keys.ArrowDown);
-                drive.SendKeys(Keys.ArrowDown);
-
-                driver.FindElement(By.XPath("(//button[@type='button'])[2]")).Click();
-                Thread.Sleep(3000);
-
-                IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
-                week.SendKeys(Keys.ArrowDown);
-
-            //add mileage                
-            driver.FindElement(By.XPath("(//button[@type='button'])[2]")).Click();
-
-                Thread.Sleep(2000);
-            }
-
+        
             public void DeclarePhoneCalls()
             {
+            
             Thread.Sleep(2000); //test
             driver.FindElement(By.XPath("//*[@id='add-receipted-item']")).Click();
             //phone calls
@@ -311,6 +288,35 @@ namespace PaystreamExpenses
 
             driver.FindElement(By.XPath("(//button[@type='button'])[2]")).Click();
         }
+
+        public void DeclareExpensesDriving()
+        {
+            Thread.Sleep(2000);
+            driver.FindElement(By.XPath("//*[@id='add-mileage-item']")).Click();
+
+            driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+            //wait = new WebDriverWait(driver, new TimeSpan(0, 0, 5));
+            //wait.Until(drv => drv.FindElement(By.Id("ExpenseParentCategoryId")));
+            IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
+
+            IWebElement vehicle = driver.FindElement(By.Id("VehicleType"));
+            vehicle.SendKeys(Keys.ArrowDown);
+            vehicle.SendKeys(Keys.ArrowDown);
+            vehicle.SendKeys(Keys.ArrowDown);
+
+                        // description
+            driver.FindElement(By.Id("Description")).SendKeys("Drive to Hemel station");
+
+            //number of miles
+            driver.FindElement(By.Id("toClaim")).Clear();
+            driver.FindElement(By.Id("toClaim")).SendKeys("16");
+            Thread.Sleep(2000);
+
+            driver.FindElement(By.XPath("(//button[@type='button'])[2]")).Click();
+
+            Thread.Sleep(1000);
+        }
+
 
     }
 }

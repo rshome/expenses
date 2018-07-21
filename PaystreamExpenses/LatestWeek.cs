@@ -10,9 +10,10 @@ namespace PaystreamExpenses
 
             wd.Login();
             wd.SelectAccountandExpenses();
-
+            
             wd.Broadband();
-            wd.DeclarePhoneCalls();        
+            
+            wd.DeclarePhoneCalls();
             wd.WeekTrainPass();
 
             for (int i = 0; i < 5; i++)
@@ -40,7 +41,7 @@ namespace PaystreamExpenses
 
             for (int i = 0; i < 5; i++)
             {
-                wd.DeclareExpensesDriveHemel();
+                wd.DeclareExpensesDriving();
             }
 
 
