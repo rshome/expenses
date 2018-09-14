@@ -4,7 +4,8 @@ using System;
 using System.Threading;
 using OpenQA.Selenium.Chrome;
 using Microsoft.VisualBasic;
-using Excel;
+using excel = Microsoft.Office.Interop.Excel;
+using OpenQA.Selenium.Support.UI;
 
 namespace PaystreamExpenses
 {
@@ -12,14 +13,22 @@ namespace PaystreamExpenses
     {        
             IWebDriver driver;
             string url = "https://portal.paystream.co.uk/";
-            
 
-            //change firefox version to lower(currently version 43.0 works, latest is 50)
+        //change firefox version to lower(currently version 43.0 works, latest is 50)
 
             public void Login()
             {
-                var username = "ricky_shome@yahoo.co.uk";
-                var password = "mem2as";
+                string username = "ricky_shome@yahoo.co.uk";
+                string password = "";
+
+                excel.Application xlApp = new excel.Application();
+
+                excel.Workbook xlWorkbook = xlApp.Workbooks.Open("C:\\Passwords\\PaystreamLogin.xlsx");
+                excel.Worksheet xlWorksheet = xlWorkbook.Sheets[1];
+                excel.Range xlRange = xlWorksheet.UsedRange;
+                
+                
+                password = xlRange.Cells[1][1].Value;
 
                 driver = new FirefoxDriver();                
 
@@ -55,7 +64,7 @@ namespace PaystreamExpenses
                 
                 IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));          
 
-            IWebElement internet = driver.FindElement(By.Id("ExpenseParentCategoryId"));                
+                IWebElement internet = driver.FindElement(By.Id("ExpenseParentCategoryId"));                
                 internet.SendKeys(Keys.ArrowDown);
                 internet.SendKeys(Keys.ArrowDown);
                 internet.SendKeys(Keys.ArrowDown);
@@ -86,8 +95,12 @@ namespace PaystreamExpenses
             Thread.Sleep(2000);            
             driver.FindElement(By.XPath("//*[@id='add-receipted-item']")).Click();
 
+            driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
             //train
-            //IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
+            IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
+
+            week.SendKeys(Keys.ArrowUp);
+            week.SendKeys(Keys.ArrowDown);
 
             IWebElement internet = driver.FindElement(By.Id("ExpenseParentCategoryId"));
             internet.SendKeys(Keys.ArrowDown);

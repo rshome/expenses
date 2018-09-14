@@ -12,9 +12,9 @@ namespace PaystreamExpenses
             wd.SelectAccountandExpenses();
             
             wd.Broadband();
-            
-            wd.DeclarePhoneCalls();
             wd.WeekTrainPass();
+            wd.DeclarePhoneCalls();
+
 
             for (int i = 0; i < 5; i++)
             {
