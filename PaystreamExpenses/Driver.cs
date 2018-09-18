@@ -14,7 +14,10 @@ namespace PaystreamExpenses
             IWebDriver driver;
             string url = "https://portal.paystream.co.uk/";
 
-        //change firefox version to lower(currently version 43.0 works, latest is 50)
+            excel.Application xlApp = new excel.Application();
+
+            //change firefox version to lower(currently version 43.0 works, latest is 50)
+            //I am now using Chromedriver nuget package version 2.42.01
 
             public void Login()
             {
@@ -29,8 +32,8 @@ namespace PaystreamExpenses
                 
                 
                 password = xlRange.Cells[1][1].Value;
-
-                driver = new FirefoxDriver();                
+                
+                driver = new ChromeDriver();
 
                 driver.Navigate().GoToUrl(url);
                 driver.Manage().Cookies.DeleteAllCookies();
@@ -54,24 +57,32 @@ namespace PaystreamExpenses
                 
             }
 
-            public void Broadband()
+            public void Broadband() 
             {
-                Thread.Sleep(1000);
+                double bBand;
+                excel.Workbook xlWorkbook = xlApp.Workbooks.Open("C:\\Passwords\\Expenses.xlsx");
+                excel.Worksheet xlWorksheet = xlWorkbook.Sheets[1];
+                excel.Range xlRange = xlWorksheet.UsedRange;
+
+                bBand = xlRange.Cells[1][2].Value;
+
+                Thread.Sleep(2000);
+
                 driver.FindElement(By.XPath(".//*[@id='add-item-links']/div/div/div[2]/div[2]/div/button")).Click();
 
                 //broadband
                 Thread.Sleep(2000);
-                
-                IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));          
 
-                IWebElement internet = driver.FindElement(By.Id("ExpenseParentCategoryId"));                
+                IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
+
+                IWebElement internet = driver.FindElement(By.Id("ExpenseParentCategoryId"));
                 internet.SendKeys(Keys.ArrowDown);
                 internet.SendKeys(Keys.ArrowDown);
                 internet.SendKeys(Keys.ArrowDown);
                 internet.SendKeys(Keys.ArrowDown);
-                
+
                 //type
-                IWebElement type = driver.FindElement(By.Id("ExpenseCategoryId"));                
+                IWebElement type = driver.FindElement(By.Id("ExpenseCategoryId"));
                 type.SendKeys(Keys.ArrowDown);
                 type.SendKeys(Keys.ArrowDown);
                 type.SendKeys(Keys.ArrowDown);
@@ -82,12 +93,15 @@ namespace PaystreamExpenses
 
                 //amount
                 driver.FindElement(By.Id("GrossAmount")).Clear();
-                driver.FindElement(By.Id("GrossAmount")).SendKeys("4.00");
+
+
+                driver.FindElement(By.Id("GrossAmount")).SendKeys(bBand.ToString());
                 Thread.Sleep(500);
 
                 driver.FindElement(By.XPath("(//button[@type='button'])[2]")).Click();
 
-                Thread.Sleep(1000);                
+                Thread.Sleep(1000);
+            
         }
 
             public void WeekTrainPass()
@@ -126,16 +140,25 @@ namespace PaystreamExpenses
 
             public void DeclareExpensesLunch()
             {
-                Thread.Sleep(2000);
-            driver.FindElement(By.XPath("//*[@id='add-receipted-item']")).Click();
+                double lunch;  //using figures from Expenses spreadsheet
+                excel.Workbook xlWorkbook = xlApp.Workbooks.Open("C:\\Passwords\\Expenses.xlsx");
+                excel.Worksheet xlWorksheet = xlWorkbook.Sheets[1];
+                excel.Range xlRange = xlWorksheet.UsedRange;
 
-            //meals
-            driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+                for (int i = 2; i < 7; i++)
+                {
+                lunch = xlRange.Cells[3][i].Value;
+
+                Thread.Sleep(2000);
+                driver.FindElement(By.XPath("//*[@id='add-receipted-item']")).Click();
+
+                //meals
+                driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
                 //wait = new WebDriverWait(driver, new TimeSpan(0, 0, 5));
                 //wait.Until(drv => drv.FindElement(By.Id("ExpenseParentCategoryId")));
                 IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
 
-            IWebElement meals = driver.FindElement(By.Id("ExpenseParentCategoryId"));
+                IWebElement meals = driver.FindElement(By.Id("ExpenseParentCategoryId"));
                 meals.SendKeys(Keys.ArrowDown);
                 meals.SendKeys(Keys.ArrowDown);
 
@@ -150,26 +173,35 @@ namespace PaystreamExpenses
 
                 //amount
                 driver.FindElement(By.Id("GrossAmount")).Clear();
-                driver.FindElement(By.Id("GrossAmount")).SendKeys("10.95");
+                driver.FindElement(By.Id("GrossAmount")).SendKeys(lunch.ToString());
                 Thread.Sleep(500);
 
                 driver.FindElement(By.XPath("(//button[@type='button'])[2]")).Click();
 
                 Thread.Sleep(1000);
-
+                }
             }
 
             public void DeclareExpensesBreakfast()
-            {           
-                Thread.Sleep(2000);
-            driver.FindElement(By.XPath("//*[@id='add-receipted-item']")).Click();
+            {
+                double breakFast;  //using figures from Expenses spreadsheet
+                excel.Workbook xlWorkbook = xlApp.Workbooks.Open("C:\\Passwords\\Expenses.xlsx");
+                excel.Worksheet xlWorksheet = xlWorkbook.Sheets[1];
+                excel.Range xlRange = xlWorksheet.UsedRange;
 
-            //meals
-            driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
-                
+                for (int i = 2; i < 7; i++)
+                {
+                breakFast = xlRange.Cells[2][i].Value;
+
+                Thread.Sleep(2000);
+                driver.FindElement(By.XPath("//*[@id='add-receipted-item']")).Click();
+
+                //meals
+                driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+
                 IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
 
-            IWebElement meals = driver.FindElement(By.Id("ExpenseParentCategoryId"));
+                IWebElement meals = driver.FindElement(By.Id("ExpenseParentCategoryId"));
                 meals.SendKeys(Keys.ArrowDown);
                 meals.SendKeys(Keys.ArrowDown);
 
@@ -183,27 +215,36 @@ namespace PaystreamExpenses
                 //amount
                 driver.FindElement(By.Id("GrossAmount")).Clear();
 
-                driver.FindElement(By.Id("GrossAmount")).SendKeys("4.45");
+                driver.FindElement(By.Id("GrossAmount")).SendKeys(breakFast.ToString());
                 Thread.Sleep(500);
 
                 driver.FindElement(By.XPath("(//button[@type='button'])[2]")).Click();
 
                 Thread.Sleep(1000);
-
+                }
             }
 
             public void DeclareExpensesCoffee()
             {
-                Thread.Sleep(2000);
-            driver.FindElement(By.XPath("//*[@id='add-receipted-item']")).Click();
+            double coffee;  //using figures from Expenses spreadsheet
+            excel.Workbook xlWorkbook = xlApp.Workbooks.Open("C:\\Passwords\\Expenses.xlsx");
+            excel.Worksheet xlWorksheet = xlWorkbook.Sheets[1];
+            excel.Range xlRange = xlWorksheet.UsedRange;
 
-            //meals
-            driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+            for (int i = 2; i < 7; i++)
+            {
+                coffee = xlRange.Cells[4][i].Value;
+
+                Thread.Sleep(2000);
+                driver.FindElement(By.XPath("//*[@id='add-receipted-item']")).Click();
+
+                //meals
+                driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
                 //wait = new WebDriverWait(driver, new TimeSpan(0, 0, 5));
                 //wait.Until(drv => drv.FindElement(By.Id("ExpenseParentCategoryId")));
                 IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
 
-            IWebElement meals = driver.FindElement(By.Id("ExpenseParentCategoryId"));
+                IWebElement meals = driver.FindElement(By.Id("ExpenseParentCategoryId"));
                 meals.SendKeys(Keys.ArrowDown);
                 meals.SendKeys(Keys.ArrowDown);
 
@@ -216,23 +257,32 @@ namespace PaystreamExpenses
 
                 //amount
                 driver.FindElement(By.Id("GrossAmount")).Clear();
-                driver.FindElement(By.Id("GrossAmount")).SendKeys("9.75");
+                driver.FindElement(By.Id("GrossAmount")).SendKeys(coffee.ToString());
                 Thread.Sleep(500);
 
-                driver.FindElement(By.XPath("(//button[@type='button'])[2]")).Click();                
+                driver.FindElement(By.XPath("(//button[@type='button'])[2]")).Click();
+                }
             }
 
             public void DeclareExpensesParking()
             {
-                Thread.Sleep(2000);
-            driver.FindElement(By.XPath("//*[@id='add-receipted-item']")).Click();
+            double park;  //using figures from Expenses spreadsheet
+            excel.Workbook xlWorkbook = xlApp.Workbooks.Open("C:\\Passwords\\Expenses.xlsx");
+            excel.Worksheet xlWorksheet = xlWorkbook.Sheets[1];
+            excel.Range xlRange = xlWorksheet.UsedRange;
 
-            driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+            for (int i = 2; i < 7; i++)
+            {
+                park = xlRange.Cells[5][i].Value;
+                Thread.Sleep(2000);
+                driver.FindElement(By.XPath("//*[@id='add-receipted-item']")).Click();
+
+                driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
                 //wait = new WebDriverWait(driver, new TimeSpan(0, 0, 5));
                 //wait.Until(drv => drv.FindElement(By.Id("ExpenseParentCategoryId")));
                 IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
 
-            IWebElement parking = driver.FindElement(By.Id("ExpenseParentCategoryId"));
+                IWebElement parking = driver.FindElement(By.Id("ExpenseParentCategoryId"));
                 parking.SendKeys(Keys.ArrowDown);
                 parking.SendKeys(Keys.ArrowDown);
                 parking.SendKeys(Keys.ArrowDown);
@@ -255,23 +305,30 @@ namespace PaystreamExpenses
 
                 //amount
                 driver.FindElement(By.Id("GrossAmount")).Clear();
-                driver.FindElement(By.Id("GrossAmount")).SendKeys("6.70");
+                driver.FindElement(By.Id("GrossAmount")).SendKeys(park.ToString());
                 Thread.Sleep(2000);
 
                 driver.FindElement(By.XPath("(//button[@type='button'])[2]")).Click();
 
                 Thread.Sleep(1000);
+                }
             }        
         
             public void DeclarePhoneCalls()
             {
-            
+
+            double phone;  //using figures from Expenses spreadsheet
+            excel.Workbook xlWorkbook = xlApp.Workbooks.Open("C:\\Passwords\\Expenses.xlsx");
+            excel.Worksheet xlWorksheet = xlWorkbook.Sheets[1];
+            excel.Range xlRange = xlWorksheet.UsedRange;
+
+            phone = xlRange.Cells[6][2].Value;
             Thread.Sleep(2000); //test
+
             driver.FindElement(By.XPath("//*[@id='add-receipted-item']")).Click();
-            //phone calls
+            
             driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
-            //wait = new WebDriverWait(driver, new TimeSpan(0, 0, 5));
-            //wait.Until(drv => drv.FindElement(By.Id("ExpenseParentCategoryId")));
+
             IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
 
             //category
@@ -292,24 +349,23 @@ namespace PaystreamExpenses
 
             driver.FindElement(By.Id("Description")).SendKeys("Calls to Offshore team");
 
-            String phoneAmount = Interaction.InputBox("Enter Amount in 0.00 format", "Phone Calls Expenses", "0.00", 0, 0);
-
             //amount
             driver.FindElement(By.Id("GrossAmount")).Clear();
-            driver.FindElement(By.Id("GrossAmount")).SendKeys(phoneAmount);
+            driver.FindElement(By.Id("GrossAmount")).SendKeys(phone.ToString());
             Thread.Sleep(500);
 
             driver.FindElement(By.XPath("(//button[@type='button'])[2]")).Click();
         }
 
-        public void DeclareExpensesDriving()
-        {
-            Thread.Sleep(2000);
+            public void DeclareExpensesDriving()
+            {
+  
+            driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+            //wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            //wait.Until(d => d.FindElement(By.XPath("//*[@id='add-mileage-item']")).Displayed);
             driver.FindElement(By.XPath("//*[@id='add-mileage-item']")).Click();
 
-            driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
-            //wait = new WebDriverWait(driver, new TimeSpan(0, 0, 5));
-            //wait.Until(drv => drv.FindElement(By.Id("ExpenseParentCategoryId")));
             IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
 
             IWebElement vehicle = driver.FindElement(By.Id("VehicleType"));
@@ -317,19 +373,17 @@ namespace PaystreamExpenses
             vehicle.SendKeys(Keys.ArrowDown);
             vehicle.SendKeys(Keys.ArrowDown);
 
-                        // description
-            driver.FindElement(By.Id("Description")).SendKeys("Drive to Hemel station");
+            // description
+            driver.FindElement(By.Id("Description")).SendKeys("Drive to station");
 
             //number of miles
             driver.FindElement(By.Id("toClaim")).Clear();
             driver.FindElement(By.Id("toClaim")).SendKeys("16");
-            Thread.Sleep(2000);
 
             driver.FindElement(By.XPath("(//button[@type='button'])[2]")).Click();
 
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
         }
-
 
     }
 }
