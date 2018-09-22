@@ -12,6 +12,8 @@ namespace PaystreamExpenses
             wd.SelectAccountandExpenses();
             
             wd.Broadband();
+            wd.DeclareExpensesDriving();
+
             wd.DeclarePhoneCalls();
 
             wd.DeclareExpensesCoffee();
@@ -20,10 +22,8 @@ namespace PaystreamExpenses
             wd.DeclareExpensesBreakfast();
             wd.WeekTrainPass();
 
-            for (int i = 0; i < 5; i++)
-            {
-                wd.DeclareExpensesDriving();
-            }
+
+
 
         }
     }
