@@ -13,14 +13,14 @@ namespace PaystreamExpenses
             
             wd.Broadband();
 
-            wd.DeclarePhoneCalls();
+            //wd.DeclarePhoneCalls();
 
-            wd.DeclareExpensesCoffee();
-            wd.DeclareExpensesParking();
+            //wd.DeclareExpensesCoffee();
+            //wd.DeclareExpensesParking();
             wd.DeclareExpensesLunch();
-            wd.DeclareExpensesBreakfast();
-            wd.WeekTrainPass();
-            wd.DeclareExpensesDriving();  
+            //wd.DeclareExpensesBreakfast();
+            //wd.WeekTrainPass();
+            //wd.DeclareExpensesDriving();  
                         
         }
 
