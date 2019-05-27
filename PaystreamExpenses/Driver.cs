@@ -165,14 +165,14 @@ namespace PaystreamExpenses
             excel.Worksheet xlWorksheet = xlWorkbook.Sheets[1];
             excel.Range xlRange = xlWorksheet.UsedRange;
 
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
        
             for (int i = 2; i < 7; i++)
             {                
                     lunch = xlRange.Cells[3][i].Value2.ToString();
                 WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
-                Thread.Sleep(2000);
+                Thread.Sleep(3000);
                 //wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.XPath("//*[@id='add-receipted-item']")));
                     driver.FindElement(By.XPath("//*[@id='add-receipted-item']")).Click();
                 Thread.Sleep(3000);
@@ -214,7 +214,7 @@ namespace PaystreamExpenses
             excel.Worksheet xlWorksheet = xlWorkbook.Sheets[1];
             excel.Range xlRange = xlWorksheet.UsedRange;
 
-            Thread.Sleep(1000);
+            Thread.Sleep(3000);
 
             for (int i = 2; i < 7; i++)
             {
@@ -453,6 +453,8 @@ namespace PaystreamExpenses
                 //number of miles
                 driver.FindElement(By.Id("toClaim")).Clear();
                 driver.FindElement(By.Id("toClaim")).SendKeys(miles.ToString());
+
+                driver.FindElement(By.Id("ReclaimVat")).Click();
 
                 driver.FindElement(By.XPath("(//button[@type='button'])[2]")).Click();
                 Thread.Sleep(1000);

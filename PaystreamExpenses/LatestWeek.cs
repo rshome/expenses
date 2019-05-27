@@ -2,7 +2,7 @@
 
 namespace PaystreamExpenses
 {
-    public class LatestWeek
+    public class LatestWeek : Driver
     {
         public static void Main(string[] args)
         {
@@ -14,7 +14,7 @@ namespace PaystreamExpenses
             wd.Broadband();
 
 
-            wd.MonthlyTrainPass();
+            //wd.MonthlyTrainPass();
             wd.DeclarePhoneCalls();
 
             wd.DeclareExpensesCoffee();
@@ -22,9 +22,10 @@ namespace PaystreamExpenses
 
             wd.DeclareExpensesBreakfast();
 
+            wd.DeclareExpensesLunch();
             wd.DeclareExpensesDriving();
 
-            wd.DeclareExpensesLunch();
+
 
 
 
