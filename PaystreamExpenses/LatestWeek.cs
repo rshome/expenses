@@ -10,11 +10,10 @@ namespace PaystreamExpenses
 
             wd.Login();
             wd.SelectAccountandExpenses();
-            
+
             wd.Broadband();
-
-
-            //wd.MonthlyTrainPass();
+            wd.MonthlyTrainPass();
+            //wd.Hotel();
             wd.DeclarePhoneCalls();
 
             wd.DeclareExpensesCoffee();
