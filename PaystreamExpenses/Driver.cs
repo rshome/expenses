@@ -13,6 +13,7 @@ namespace PaystreamExpenses
         string url = "https://portal.paystream.co.uk/";
 
         excel.Application xlApp = new excel.Application();
+        Helper _helper = new Helper();
 
         //change firefox version to lower(currently version 43.0 works, latest is 50)
         //I am now using Chromedriver nuget package version 2.42.01
@@ -29,17 +30,18 @@ namespace PaystreamExpenses
             excel.Range xlRange = xlWorksheet.UsedRange;
 
             username = xlRange.Cells[1][1].Value;
-            password = xlRange.Cells[1][2].Value;
-
-            driver = new ChromeDriver();
+            password = xlRange.Cells[1][2].Value;            
 
             driver.Navigate().GoToUrl(url);
             driver.Manage().Cookies.DeleteAllCookies();
             driver.Manage().Window.Maximize();
             driver.FindElement(By.XPath("//*[@id='login-form']/form/button")).Click();
 
-            driver.FindElement(By.Id("Username")).SendKeys(username);
-            driver.FindElement(By.Id("Password")).SendKeys(password);
+            //driver.FindElement(By.Id("Username")).SendKeys(username);
+            _helper.EnterData(driver,"Username", username);            
+            _helper.EnterData(driver,"Password", password);
+            
+            //driver.FindElement(By.Id("Password")).SendKeys(password);
             driver.FindElement(By.XPath("/html/body/div/div[2]/div/form/div[4]/button[1]")).Click();
 
             //driver.FindElement(By.XPath(".//*[@id='login']/ul/li[4]/button")).Click();
@@ -477,7 +479,7 @@ namespace PaystreamExpenses
 
         public void DeclareExpensesDriving()
         {
-            double miles;  //using figures from Expenses spreadsheet
+            //double miles;  //using figures from Expenses spreadsheet
             string eSize;
             int rowEnd;
             
@@ -515,9 +517,10 @@ namespace PaystreamExpenses
 
                 //verify miles
                 driver.FindElement(By.Id("getDistance")).Click();
-            Thread.Sleep(1000);
+                Thread.Sleep(1000);
 
                 driver.FindElement(By.Id("IsReturn")).Click();
+                driver.FindElement(By.Id("NumberOfJourneys")).Clear();
                 driver.FindElement(By.Id("NumberOfJourneys")).SendKeys("5");
 
                 driver.FindElement(By.Id("ReclaimVat")).Click();
