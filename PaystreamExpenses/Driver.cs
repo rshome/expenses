@@ -479,7 +479,7 @@ namespace PaystreamExpenses
 
         public void DeclareExpensesDriving()
         {
-            double miles;  //using figures from Expenses spreadsheet
+            string miles;  //using figures from Expenses spreadsheet
             string eSize;
             int rowEnd;
 
@@ -487,6 +487,9 @@ namespace PaystreamExpenses
             excel.Worksheet xlWorksheet = xlWorkbook.Sheets[1];
             excel.Range xlRange = xlWorksheet.UsedRange;
             rowEnd = xlRange.Rows.Count;
+
+            //delete this after
+            //driver.FindElement(By.XPath(".//*[@id='add-item-links']/div/div/div[2]/div[2]/div/button")).Click();
 
             Thread.Sleep(2000);
 
