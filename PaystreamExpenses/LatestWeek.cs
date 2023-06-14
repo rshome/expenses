@@ -23,11 +23,6 @@ namespace PaystreamExpenses
 
             wd.DeclareExpensesLunch();
             wd.DeclareExpensesDriving();
-
-
-
-
-
         }
 
         
