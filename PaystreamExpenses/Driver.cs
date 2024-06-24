@@ -128,8 +128,8 @@ namespace PaystreamExpenses
 
             wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.Id("ExpenseParentCategoryId")));
 
-            //IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
-            //week.SendKeys(Keys.ArrowDown);
+            IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
+            week.SendKeys(Keys.ArrowDown);
 
             IWebElement internet = driver.FindElement(By.Id("ExpenseParentCategoryId"));
             internet.SendKeys(Keys.ArrowDown);
@@ -219,7 +219,7 @@ namespace PaystreamExpenses
 
             Thread.Sleep(2000);
        
-            for (int i = 2; i < 6; i++)
+            for (int i = 2; i < 7; i++)
             {                
                     lunch = xlRange.Cells[3][i].Value2.ToString();
                 WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
@@ -267,7 +267,7 @@ namespace PaystreamExpenses
 
             Thread.Sleep(3000);
 
-            for (int i = 2; i < 6; i++)
+            for (int i = 2; i < 7; i++)
             {
                     breakFast = xlRange.Cells[2][i].Value.ToString();
                     WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
@@ -316,7 +316,7 @@ namespace PaystreamExpenses
 
             Thread.Sleep(2000);
 
-            for (int i = 2; i < 6; i++)
+            for (int i = 2; i < 7; i++)
             {
                     coffee = xlRange.Cells[4][i].Value2.ToString();
                     WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));                
@@ -363,7 +363,7 @@ namespace PaystreamExpenses
 
             Thread.Sleep(2000);
 
-            for (int i = 2; i < 6; i++)
+            for (int i = 2; i < 7; i++)
             {
                     park = xlRange.Cells[5][i].Value2.ToString();
                     WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));                
@@ -475,7 +475,7 @@ namespace PaystreamExpenses
 
             Thread.Sleep(2000);
 
-            for (int i = 2; i < 6; i++)
+            for (int i = 2; i < 7; i++)
             {
                 eSize = xlRange.Cells[8][2].Value;
                 miles = xlRange.Cells[7][i].Value2.ToString();
