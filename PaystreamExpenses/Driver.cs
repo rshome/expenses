@@ -4,6 +4,7 @@ using System.Threading;
 using OpenQA.Selenium.Chrome;
 using excel = Microsoft.Office.Interop.Excel;
 using OpenQA.Selenium.Support.UI;
+using OpenQA.Selenium.Interactions;
 
 namespace PaystreamExpenses
 {
@@ -11,7 +12,6 @@ namespace PaystreamExpenses
     {
         IWebDriver driver = new ChromeDriver();
         string url = "https://portal.paystream.co.uk/";
-        IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
 
         excel.Application xlApp = new excel.Application();
         Helper _helper = new Helper();
@@ -81,6 +81,7 @@ namespace PaystreamExpenses
                 WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
                 wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.Id("ExpenseParentCategoryId")));
 
+            //IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
             //week.SendKeys(Keys.ArrowDown);
 
             IWebElement internet = driver.FindElement(By.Id("ExpenseParentCategoryId"));
@@ -181,6 +182,7 @@ namespace PaystreamExpenses
 
                 wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.Id("ExpenseParentCategoryId")));
 
+                //IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
                 //week.SendKeys(Keys.ArrowUp);
                 //week.SendKeys(Keys.ArrowDown);
 
@@ -229,6 +231,7 @@ namespace PaystreamExpenses
 
                 wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.Id("ExpenseParentCategoryId")));
 
+                //IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
                 //week.SendKeys(Keys.ArrowDown);
 
                 //breakfast
@@ -276,6 +279,7 @@ namespace PaystreamExpenses
 
                 wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.Id("ExpenseParentCategoryId")));
 
+                //IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
                 //week.SendKeys(Keys.ArrowDown);
 
                 //breakfast
@@ -323,6 +327,7 @@ namespace PaystreamExpenses
 
                 wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.Id("ExpenseParentCategoryId")));
 
+                //IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
                 //week.SendKeys(Keys.ArrowDown);
 
                 //coffee
@@ -369,7 +374,8 @@ namespace PaystreamExpenses
 
                 //Thread.Sleep(2000);
                 wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.Id("ExpenseParentCategoryId")));
-                
+
+                //IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
                 //week.SendKeys(Keys.ArrowDown);
 
                 IWebElement parking = driver.FindElement(By.Id("ExpenseParentCategoryId"));
@@ -423,7 +429,8 @@ namespace PaystreamExpenses
                 driver.FindElement(By.XPath("//*[@id='add-receipted-item']")).Click();
 
                 wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.Id("ExpenseParentCategoryId")));
-                
+
+                //IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
                 //week.SendKeys(Keys.ArrowDown);
 
                 //category
@@ -482,18 +489,35 @@ namespace PaystreamExpenses
 
                 Thread.Sleep(3000);
                 wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.Id("VehicleType")));
-                
+
+                //IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
                 //week.SendKeys(Keys.ArrowDown);
 
                 Thread.Sleep(2000);
                 IWebElement vehicle = driver.FindElement(By.Id("VehicleType"));
                 vehicle.SendKeys(eSize);
 
+                //STart postcode
+
+
                 // description
                 driver.FindElement(By.Id("Description")).SendKeys("Drive Commute");
 
-                //miles
-                driver.FindElement(By.Id("toClaim")).SendKeys(miles.ToString());
+                //Start postcode
+                driver.FindElement(By.Id("startPostcode")).SendKeys("WD17 4HQ");
+
+                //End postcode
+                driver.FindElement(By.Id("destinationPostcode")).SendKeys("HP3 9BQ");
+
+                driver.FindElement(By.Id("getDistance")).Click();
+                driver.FindElement(By.Id("IsReturn")).Click();
+
+                driver.FindElement(By.Id("NumberOfJourneys")).SendKeys("5");
+
+                var element = driver.FindElement(By.Id("ReclaimVat"));
+                Actions actions = new Actions(driver);
+                actions.MoveToElement(element);
+                actions.Perform();
 
                 driver.FindElement(By.Id("ReclaimVat")).Click();
                 Thread.Sleep(2000);
