@@ -517,9 +517,7 @@ namespace PaystreamExpenses
                 var element = driver.FindElement(By.Id("ReclaimVat"));
                 Actions actions = new Actions(driver);
                 actions.MoveToElement(element);
-                actions.Perform();
-
-                driver.FindElement(By.Id("ReclaimVat")).Click();
+                element.Click();
                 Thread.Sleep(2000);
 
                 driver.FindElement(By.XPath("(//button[@type='button'])[2]")).Click();
