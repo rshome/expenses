@@ -177,13 +177,14 @@ namespace PaystreamExpenses
                 WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
 
                 Thread.Sleep(3000);                
-                wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='add-receipted-item']")));
-                driver.FindElement(By.XPath("//*[@id='add-receipted-item']")).Click();
+                wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//button[@value='AddReceiptedItem']")));
+                driver.FindElement(By.XPath("//button[@value='AddReceiptedItem']")).Click();
 
                 wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.Id("ExpenseParentCategoryId")));
 
-                //IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
-                //week.SendKeys(Keys.ArrowUp);
+                IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
+                week.SendKeys(Keys.ArrowUp);
+                week.SendKeys(Keys.ArrowDown);
                 //week.SendKeys(Keys.ArrowDown);
 
                 IWebElement internet = driver.FindElement(By.Id("ExpenseParentCategoryId"));
@@ -475,10 +476,7 @@ namespace PaystreamExpenses
 
             Thread.Sleep(2000);
 
-            for (int i = 2; i < 7; i++)
-            {
                 eSize = xlRange.Cells[8][2].Value;
-                miles = xlRange.Cells[7][i].Value2.ToString();
 
                 WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(40));
                 Thread.Sleep(5000);
@@ -512,6 +510,7 @@ namespace PaystreamExpenses
                 driver.FindElement(By.Id("getDistance")).Click();
                 driver.FindElement(By.Id("IsReturn")).Click();
 
+                driver.FindElement(By.Id("NumberOfJourneys")).Clear();
                 driver.FindElement(By.Id("NumberOfJourneys")).SendKeys("5");
 
                 var element = driver.FindElement(By.Id("ReclaimVat"));
@@ -522,11 +521,9 @@ namespace PaystreamExpenses
 
                 driver.FindElement(By.XPath("(//button[@type='button'])[2]")).Click();
                 Thread.Sleep(2000);
-            }
-            
+
             xlWorkbook.Close();
-        }
-        
+        }       
     }
     
     
