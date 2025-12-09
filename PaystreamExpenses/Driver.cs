@@ -17,9 +17,6 @@ namespace PaystreamExpenses
         excel.Application xlApp = new excel.Application();
         Helper _helper = new Helper();
 
-        //change firefox version to lower(currently version 43.0 works, latest is 50)
-        //I am now using Chromedriver nuget package version 2.42.01
-
         public void Login()
         {
             string username = "";
@@ -83,21 +80,8 @@ namespace PaystreamExpenses
                 WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
                 wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.Id("ExpenseParentCategoryId")));
 
-            IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
-            week.SendKeys(Keys.ArrowDown);
-            week.SendKeys(Keys.ArrowDown);
-            week.SendKeys(Keys.ArrowDown);
-            week.SendKeys(Keys.ArrowDown);
-            week.SendKeys(Keys.ArrowDown);
-            week.SendKeys(Keys.ArrowDown);
-            week.SendKeys(Keys.ArrowDown);
-            week.SendKeys(Keys.ArrowDown);
-            week.SendKeys(Keys.ArrowDown);
-            week.SendKeys(Keys.ArrowDown);
-            week.SendKeys(Keys.ArrowDown);
-            week.SendKeys(Keys.ArrowDown);
-            week.SendKeys(Keys.ArrowDown);
-            week.SendKeys(Keys.ArrowDown);
+            //IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
+            //week.SendKeys(Keys.ArrowDown);
 
             IWebElement internet = driver.FindElement(By.Id("ExpenseParentCategoryId"));
                 internet.SendKeys(Keys.ArrowDown);
@@ -197,23 +181,9 @@ namespace PaystreamExpenses
 
                 wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.Id("ExpenseParentCategoryId")));
 
-                IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
-                week.SendKeys(Keys.ArrowUp);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
+                //IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
+                //week.SendKeys(Keys.ArrowUp);
+                //week.SendKeys(Keys.ArrowDown);
 
                 IWebElement internet = driver.FindElement(By.Id("ExpenseParentCategoryId"));
                 internet.SendKeys(Keys.ArrowDown);
@@ -260,21 +230,8 @@ namespace PaystreamExpenses
 
                 wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.Id("ExpenseParentCategoryId")));
 
-                IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
+                //IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
+                //week.SendKeys(Keys.ArrowDown);
 
                 //lunch
                 IWebElement meals = driver.FindElement(By.Id("ExpenseParentCategoryId"));
@@ -322,21 +279,8 @@ namespace PaystreamExpenses
 
                 wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.Id("ExpenseParentCategoryId")));
 
-                IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
+                //IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
+                //week.SendKeys(Keys.ArrowDown);
 
                 //breakfast
                 IWebElement meals = driver.FindElement(By.Id("ExpenseParentCategoryId"));
@@ -383,21 +327,8 @@ namespace PaystreamExpenses
 
                 wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.Id("ExpenseParentCategoryId")));
 
-                IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
+                //IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
+                //week.SendKeys(Keys.ArrowDown);
 
                 //coffee
                 IWebElement meals = driver.FindElement(By.Id("ExpenseParentCategoryId"));
@@ -444,21 +375,8 @@ namespace PaystreamExpenses
                 //Thread.Sleep(1000);
                 wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.Id("ExpenseParentCategoryId")));
 
-                IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
+                //IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
+                //week.SendKeys(Keys.ArrowDown);
 
                 IWebElement parking = driver.FindElement(By.Id("ExpenseParentCategoryId"));
                     parking.SendKeys(Keys.ArrowDown);
@@ -512,21 +430,8 @@ namespace PaystreamExpenses
 
                 wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.Id("ExpenseParentCategoryId")));
 
-                IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
+                //IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
+                //week.SendKeys(Keys.ArrowDown);
 
                 //category
                 IWebElement cat = driver.FindElement(By.Id("ExpenseParentCategoryId"));
@@ -582,28 +487,12 @@ namespace PaystreamExpenses
                 Thread.Sleep(1500);
                 wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.Id("VehicleType")));
 
-                IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-                week.SendKeys(Keys.ArrowDown);
-            week.SendKeys(Keys.ArrowDown);
-            week.SendKeys(Keys.ArrowDown);
-            week.SendKeys(Keys.ArrowDown);
-            week.SendKeys(Keys.ArrowDown);
-            week.SendKeys(Keys.ArrowDown);
-            week.SendKeys(Keys.ArrowDown);
-            week.SendKeys(Keys.ArrowDown);
-            week.SendKeys(Keys.ArrowDown);
-            week.SendKeys(Keys.ArrowDown);
-            week.SendKeys(Keys.ArrowDown);
-            week.SendKeys(Keys.ArrowDown);
+               //IWebElement week = driver.FindElement(By.Id("WeekEndingDateDisplay"));
+               // week.SendKeys(Keys.ArrowDown);
 
             Thread.Sleep(1000);
                 IWebElement vehicle = driver.FindElement(By.Id("VehicleType"));
                 vehicle.SendKeys(eSize);
-
-                //STart postcode
-
 
                 // description
                 driver.FindElement(By.Id("Description")).SendKeys("Drive Commute");
