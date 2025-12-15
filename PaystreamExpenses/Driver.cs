@@ -55,7 +55,7 @@ namespace PaystreamExpenses
             //driver.FindElement(By.XPath(".//*[@id='content']/div[2]/div[2]/form/button")).Click();
 
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
-            // Replace all occurrences of ExpectedConditions with the correct namespace
+
             wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.LinkText("Expenses")));
             Thread.Sleep(500);
             driver.FindElement(By.LinkText("Expenses")).Click();
