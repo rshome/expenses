@@ -11,16 +11,27 @@ namespace PaystreamExpenses
 {
     public class Driver
     {
-        IWebDriver driver = new ChromeDriver();
+        IWebDriver driver;
         string url = "https://portal.paystream.co.uk/";
 
         excel.Application xlApp = new excel.Application();
         Helper _helper = new Helper();
 
+        public Driver()
+        {
+            var options = new ChromeOptions();
+            options.BinaryLocation = @"C:\Program Files\Google\Chrome\Application\chrome.exe";
+
+            // Use the output directory for chromedriver.exe, or set to the folder where you downloaded ChromeDriver 145
+            string chromeDriverDirectory = AppDomain.CurrentDomain.BaseDirectory;
+
+            driver = new ChromeDriver(chromeDriverDirectory, options);
+        }
+
         public void Login()
         {
-            string username = "";
-            string password = "";
+            string username = "ricky_shome@yahoo.co.uk";
+            string password = "J4nuary!";
 
             excel.Application xlApp = new excel.Application();
 
@@ -436,7 +447,7 @@ namespace PaystreamExpenses
                 //category
                 IWebElement cat = driver.FindElement(By.Id("ExpenseParentCategoryId"));
 
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < 7; i++)
                 {
                     cat.SendKeys(Keys.ArrowDown);
                 }
