@@ -20,12 +20,13 @@ namespace PaystreamExpenses
         public Driver()
         {
             var options = new ChromeOptions();
-            options.BinaryLocation = @"C:\Program Files\Google\Chrome\Application\chrome.exe";
+            //options.BinaryLocation = @"C:\Program Files\Google\Chrome\Application\chrome.exe";
 
-            // Use the output directory for chromedriver.exe, or set to the folder where you downloaded ChromeDriver 145
-            string chromeDriverDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            //// Use the output directory for chromedriver.exe, or set to the folder where you downloaded ChromeDriver 145
+            //string chromeDriverDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            driver = new ChromeDriver(options);
 
-            driver = new ChromeDriver(chromeDriverDirectory, options);
+            //driver = new ChromeDriver(chromeDriverDirectory, options);
         }
 
         public void Login()
